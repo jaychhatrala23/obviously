@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "person"
+    "phonenumber_field",
+    "person",
 ]
+
+AUTH_USER_MODEL = "person.Person"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -77,7 +80,7 @@ WSGI_APPLICATION = "obviously.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        'NAME': ':memory:',
+        "NAME": ":memory:",
     }
 }
 
