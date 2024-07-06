@@ -4,6 +4,7 @@ from typing import Optional
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from person.manager import PersonManager
 
 
 # Create your models here.
@@ -34,8 +35,12 @@ class Person(AbstractUser):
     """
 
     phone = PhoneNumberField(blank=True, region="GB")
-    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_birth = models.DateField(
+        null=True, blank=True, help_text="Please use the following format : YYYY-MM-DD"
+    )
     role = models.ForeignKey(Role, on_delete=models.RESTRICT, null=True, blank=True)
+
+    objects = PersonManager()
 
     def __str__(self):
         return self.get_full_name()
