@@ -10,6 +10,10 @@ python = "^3.11"
 django = "^5.0.6"
 black = "^24.4.2"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "^8.0.0"}
+pytest = "^8.2.2"
+pytest-django = "^4.8.0"
+pytest-factoryboy = "^2.7.0"
+freezegun = "^1.5.1"
 
 
 [build-system]
