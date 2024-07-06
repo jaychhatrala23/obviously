@@ -2,6 +2,8 @@ from datetime import datetime
 
 from django.contrib.auth.models import UserManager
 
+from person.validator import validate_phone_number
+
 
 class PersonManager(UserManager):
     """
@@ -21,4 +23,6 @@ class PersonManager(UserManager):
                 extra_fields["date_of_birth"] = datetime.strptime(
                     date_of_birth, "%Y-%m-%d"
                 ).date()
+        if "phone" in extra_fields:
+            validate_phone_number(extra_fields["phone"])
         return super().create_user(username, email, password, **extra_fields)

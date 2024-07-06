@@ -2,6 +2,7 @@ import datetime
 
 import pytest
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from freezegun import freeze_time
 
@@ -155,3 +156,16 @@ class TestPersonModel:
 
         # Ensure the role no longer exists
         assert not Role.objects.filter(id=test_role.id).exists()
+
+    def test_invalid_phone_number(self):
+        with pytest.raises(ValidationError):
+            User.objects.create_user(
+                username="jaychhatrala",
+                email="jay@example.com",
+                password="securepassword123",
+                first_name="Jay",
+                last_name="Chhatrala",
+                phone="+invalid1223",   # Invalid Number
+                date_of_birth="1990-01-01",
+                role=self.role_admin,
+            )
