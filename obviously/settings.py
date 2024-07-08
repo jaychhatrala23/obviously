@@ -80,7 +80,7 @@ WSGI_APPLICATION = "obviously.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": ":memory:",
+        "NAME": "file::memory:?cache=shared",  # Use a shared cache so all threads can access the in-memory database
         "TEST": {
             "NAME": ":memory:",  # Use an in-memory database for tests
         },
