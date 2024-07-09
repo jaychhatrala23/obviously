@@ -83,6 +83,21 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-elasticsearch-dsl"
+version = "8.0"
+description = "Wrapper around elasticsearch-dsl-py for django models"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+elasticsearch-dsl = ">=8.9.0,<9.0.0"
+six = "*"
+
+[package.extras]
+celery = ["celery (>=4.1.0)"]
+
+[[package]]
 name = "django-filter"
 version = "24.2"
 description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
@@ -140,6 +155,55 @@ python-versions = ">=3.8"
 
 [package.dependencies]
 django = ">=4.2"
+
+[[package]]
+name = "elastic-transport"
+version = "8.13.1"
+description = "Transport classes and utilities shared among Python Elastic client libraries"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+certifi = "*"
+urllib3 = ">=1.26.2,<3"
+
+[package.extras]
+develop = ["aiohttp", "furo", "httpx", "mock", "opentelemetry-api", "opentelemetry-sdk", "orjson", "pytest", "pytest-asyncio", "pytest-cov", "pytest-httpserver", "pytest-mock", "requests", "respx", "sphinx (>2)", "sphinx-autodoc-typehints", "trustme"]
+
+[[package]]
+name = "elasticsearch"
+version = "8.14.0"
+description = "Python client for Elasticsearch"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+elastic-transport = ">=8.13,<9"
+
+[package.extras]
+async = ["aiohttp (>=3,<4)"]
+orjson = ["orjson (>=3)"]
+requests = ["requests (>=2.4.0,!=2.32.2,<3.0.0)"]
+vectorstore-mmr = ["numpy (>=1)", "simsimd (>=3)"]
+
+[[package]]
+name = "elasticsearch-dsl"
+version = "8.14.0"
+description = "Python client for Elasticsearch"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+elasticsearch = ">=8.0.0,<9.0.0"
+python-dateutil = "*"
+typing-extensions = "*"
+
+[package.extras]
+async = ["elasticsearch[async] (>=8.0.0,<9.0.0)"]
+develop = ["coverage", "elasticsearch[async]", "nltk", "pytest", "pytest-asyncio", "pytest-cov", "pytest-mock", "pytz", "sentence-transformers", "sphinx (>2)", "sphinx-rtd-theme (>0.5)", "tqdm", "unasync"]
 
 [[package]]
 name = "factory-boy"
@@ -972,7 +1036,7 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "c94f2cf433152a23634cab0d5b2a75074ff022b54ad47237d75596e631858301"
+content-hash = "e05bacdaf4b53212bc1e531818ba1a635bd71f59e64556dd3c0c0243708bdce4"
 
 [metadata.files]
 asgiref = [
@@ -1111,6 +1175,10 @@ django = [
     {file = "Django-5.0.7-py3-none-any.whl", hash = "sha256:f216510ace3de5de01329463a315a629f33480e893a9024fc93d8c32c22913da"},
     {file = "Django-5.0.7.tar.gz", hash = "sha256:bd4505cae0b9bd642313e8fb71810893df5dc2ffcacaa67a33af2d5cd61888f2"},
 ]
+django-elasticsearch-dsl = [
+    {file = "django-elasticsearch-dsl-8.0.tar.gz", hash = "sha256:64ee0612ced6d57515a6b7f29f1a3e1c2eea1996a6226fc72079a95c067b27ca"},
+    {file = "django_elasticsearch_dsl-8.0-py2.py3-none-any.whl", hash = "sha256:423784a4af336d109c3763622f1edc4973664cb5154beb55b3ff9390c1e4525e"},
+]
 django-filter = [
     {file = "django-filter-24.2.tar.gz", hash = "sha256:48e5fc1da3ccd6ca0d5f9bb550973518ce977a4edde9d2a8a154a7f4f0b9f96e"},
     {file = "django_filter-24.2-py3-none-any.whl", hash = "sha256:df2ee9857e18d38bed203c8745f62a803fa0f31688c9fe6f8e868120b1848e48"},
@@ -1126,6 +1194,18 @@ django-vectordb = [
 djangorestframework = [
     {file = "djangorestframework-3.15.2-py3-none-any.whl", hash = "sha256:2b8871b062ba1aefc2de01f773875441a961fefbf79f5eed1e32b2f096944b20"},
     {file = "djangorestframework-3.15.2.tar.gz", hash = "sha256:36fe88cd2d6c6bec23dca9804bab2ba5517a8bb9d8f47ebc68981b56840107ad"},
+]
+elastic-transport = [
+    {file = "elastic_transport-8.13.1-py3-none-any.whl", hash = "sha256:5d4bb6b8e9d74a9c16de274e91a5caf65a3a8d12876f1e99152975e15b2746fe"},
+    {file = "elastic_transport-8.13.1.tar.gz", hash = "sha256:16339d392b4bbe86ad00b4bdeecff10edf516d32bc6c16053846625f2c6ea250"},
+]
+elasticsearch = [
+    {file = "elasticsearch-8.14.0-py3-none-any.whl", hash = "sha256:cef8ef70a81af027f3da74a4f7d9296b390c636903088439087b8262a468c130"},
+    {file = "elasticsearch-8.14.0.tar.gz", hash = "sha256:aa2490029dd96f4015b333c1827aa21fd6c0a4d223b00dfb0fe933b8d09a511b"},
+]
+elasticsearch-dsl = [
+    {file = "elasticsearch-dsl-8.14.0.tar.gz", hash = "sha256:326c6dccf32f1ff3d4c84889388590778444ba18f770adee52f24721cb97c4c7"},
+    {file = "elasticsearch_dsl-8.14.0-py3-none-any.whl", hash = "sha256:99c5cbda28a37eec05ac78e82fdc87e8641eb83956ea63a817bf0e9da3d688dd"},
 ]
 factory-boy = [
     {file = "factory_boy-3.3.0-py2.py3-none-any.whl", hash = "sha256:a2cdbdb63228177aa4f1c52f4b6d83fab2b8623bf602c7dedd7eb83c0f69c04c"},

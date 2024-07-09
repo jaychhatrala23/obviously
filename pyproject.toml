@@ -20,6 +20,9 @@ django-vectordb = {extras = ["standard"], version = "^0.3.0"}
 numpy = "<2"
 sentencepiece = "^0.2.0"
 hnswlib = "^0.8.0"
+elasticsearch = "^8.14.0"
+elasticsearch-dsl = "^8.14.0"
+django-elasticsearch-dsl = "^8.0"
 
 
 [build-system]

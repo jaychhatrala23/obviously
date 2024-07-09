@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "phonenumber_field",
     'vectordb',
+    "django_elasticsearch_dsl",
     "person",
 ]
 
@@ -145,3 +146,9 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Elastic Search Settings
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'http://localhost:9200'
+    },
+}

@@ -7,6 +7,7 @@ from vectordb import vectordb
 
 from .filters import PersonFilter
 from .models import Person
+from .search_backend import elasticsearch_persons
 from .serializers import PersonSerializer, PersonSearchSerializer
 from .permissions import IsAdminRole
 
@@ -54,3 +55,15 @@ class PersonViewSet(viewsets.ModelViewSet):
         serializer = PersonSerializer(results, many=True)
         return Response(serializer.data)
 
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    def elastic_search(self, request):
+        """
+        Endpoint to fizzy search Person model instances from the Elasticsearch's Person Document
+        using the given query string.
+        """
+        query = request.query_params.get('q', None)
+        if not query:
+            return Response({"error": "Query parameter 'q' is required."}, status=status.HTTP_400_BAD_REQUEST)
+        results = elasticsearch_persons(query)
+        serializer = PersonSearchSerializer(results, many=True)
+        return Response(serializer.data)
