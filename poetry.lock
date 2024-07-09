@@ -1036,7 +1036,7 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "e05bacdaf4b53212bc1e531818ba1a635bd71f59e64556dd3c0c0243708bdce4"
+content-hash = "1a1882c8106d6b701711e4b9adf4fd84a1e9e6576cfba4458fa9d3d1a4971546"
 
 [metadata.files]
 asgiref = [
