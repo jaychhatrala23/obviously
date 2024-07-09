@@ -28,7 +28,7 @@ ADMIN & GUEST :
 
 - GET /persons/search/?first_name=John&last_name=Doe&age=34 : Retrieve persons that match by first_name, last_name or age or all of them
 
-- GET /persons/vector_search/?q=admin : Retrieve persons that match the query (limited to nearest 5 vectors)
+- GET /persons/vector_search/?q=admin : Retrieve persons using vectorized db that implements vectorized similarity search from the given query (limited to nearest 5 vectors)
 
 - GET /persons/elastic_search/?q=jey : Elasticsearch implementation to Fuzzy search on full name of Person, eg. if theres a person named Jay Chhatrala, and if you query by jey or chhaatrraala , it will return the instance of Jay Chhatrala
 
