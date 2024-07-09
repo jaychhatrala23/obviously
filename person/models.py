@@ -63,3 +63,24 @@ class Person(AbstractUser):
                 age -= 1
             return age
         return None
+
+    def get_vectordb_text(self):
+        """
+        Generate vectordb text metadata
+        """
+        # Use title and description for vector search
+        return f"{self.first_name} \n {self.last_name} \n {self.username} \n {str(self.role)} \n {self.email} \n " \
+               f"{self.age if self.age is not None else ''}"
+
+    def get_vectordb_metadata(self):
+        """
+        Generate vectordb metadata
+        """
+        # Enables filtering by any of these metadata
+        return {"first_name": self.first_name,
+                "last_name": self.last_name,
+                "username": self.username,
+                "role": str(self.role),
+                "email": self.email,
+                "age": self.age,
+                "model": "person"}
